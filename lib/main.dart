@@ -5,6 +5,10 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  void answerQues() {
+    print('Answer chosen!');
+  }
+
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -14,9 +18,9 @@ class MyApp extends StatelessWidget {
           body: Column(
             children: <Widget>[
               Text('Question text?'),
-              ElevatedButton(onPressed: null, child: Text('answer 1')),
-              ElevatedButton(onPressed: null, child: Text('answer 2')),
-              ElevatedButton(onPressed: null, child: Text('answer 3')),
+              ElevatedButton(onPressed: answerQues, child: Text('answer 1')),
+              ElevatedButton(onPressed: answerQues, child: Text('answer 2')),
+              ElevatedButton(onPressed: answerQues, child: Text('answer 3')),
             ],
           )),
     );
