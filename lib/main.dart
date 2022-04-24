@@ -14,6 +14,20 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final questions = const [
+    {
+      'questionText': 'What is your favorite color?',
+      'answers': ['blue', 'black', 'red', 'green'],
+    },
+    {
+      'questionText': 'What is your favorite animal?',
+      'answers': ['rabbit', 'snake', 'elephant', 'lion'],
+    },
+    {
+      'questionText': 'What is your favorite food?',
+      'answers': ['food1', 'food2', 'food3', 'food4'],
+    },
+  ];
   var _questionIndex = 0;
 
   void _answerQues() {
@@ -24,35 +38,24 @@ class _MyAppState extends State<MyApp> {
   }
 
   Widget build(BuildContext context) {
-    var questions = [
-      {
-        'questionText': 'What is your favorite color?',
-        'answers': ['blue', 'black', 'red', 'green'],
-      },
-      {
-        'questionText': 'What is your favorite animal?',
-        'answers': ['rabbit', 'snake', 'elephant', 'lion'],
-      },
-      {
-        'questionText': 'What is your favorite food?',
-        'answers': ['food1', 'food2', 'food3', 'food4'],
-      },
-    ];
-
     return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text('My First App'),
-          ),
-          body: Column(
-            children: <Widget>[
-              Question(questions[_questionIndex]['questionText']),
-              ...(questions[_questionIndex]['answers'] as List<String>)
-                  .map((answer) {
-                return Answer(_answerQues, answer);
-              }).toList()
-            ],
-          )),
-    );
+        home: Scaffold(
+      appBar: AppBar(
+        title: Text('My First App'),
+      ),
+      body: _questionIndex > questions.length
+          ? Column(
+              children: <Widget>[
+                Question(questions[_questionIndex]['questionText']),
+                ...(questions[_questionIndex]['answers'] as List<String>)
+                    .map((answer) {
+                  return Answer(_answerQues, answer);
+                }).toList()
+              ],
+            )
+          : Center(
+              child: Text("Completed!"),
+            ),
+    ));
   }
 }
